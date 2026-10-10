@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#231047">
+<meta name="description" content="Фан-сайт мультсериала Сказочный патруль. Персонажи, сезоны и волшебные истории!">
+<title>Сказочный патруль — Волшебный мир</title>
+<style>
+:root {
+  --bg: #160b2c;
+  --panel: #281449;
+  --pink: #ff70c8;
+  --purple: #a77bff;
+  --blue: #65d9ff;
+  --text: #fff8ff;
+  --muted: #d4c4eb;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 10% 5%, #512278 0, transparent 38%),
+    radial-gradient(ellipse at 90% 35%, #252a72 0, transparent 35%),
+    var(--bg);
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 5%;
+  background: #160b2ceF;
+  border-bottom: 1px solid #ffffff20;
+  backdrop-filter: blur(14px);
+}
+.logo { font-size: 17px; font-weight: 900; }
+.logo span { color: var(--pink); }
+nav { display: flex; gap: 15px; font-size: 13px; }
+nav a:hover { color: var(--pink); }
+.hero {
+  min-height: 440px;
+  padding: 76px 6% 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before, .hero::after {
+  content: "✦";
+  position: absolute;
+  color: #ffffff80;
+  font-size: 32px;
+  animation: twinkle 2.5s infinite alternate;
+}
+.hero::before { top: 35px; left: 12%; }
+.hero::after { right: 12%; bottom: 65px; animation-delay: 1s; }
+.eyebrow {
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  font-weight: 800;
+}
+h1 {
+  font-size: clamp(36px, 8vw, 65px);
+  line-height: 1.08;
+  margin: 18px 0;
+  background: linear-gradient(90deg, #ff9adf, #d2a8ff, #80e4ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero p {
+  max-width: 550px;
+  margin: 0 auto 26px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 22px;
+  font-weight: 800;
+  color: #210d39;
+  background: linear-gradient(100deg, #ff92d8, #c4a1ff, #83e5ff);
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px #bb83ff50; }
+section { padding: 42px 6%; scroll-margin-top: 70px; }
+.section-title { text-align: center; margin-bottom: 28px; }
+.section-title h2 { font-size: 28px; margin-bottom: 8px; }
+.section-title p { color: var(--muted); font-size: 14px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 900px;
+  margin: auto;
+}
+.card {
+  min-width: 0;
+  border: 1px solid #ffffff18;
+  border-radius: 22px;
+  padding: 19px 12px;
+  text-align: center;
+  background: linear-gradient(145deg, #ffffff10, #ffffff04);
+  box-shadow: 0 10px 35px #00000015;
+  transition: transform .25s, border-color .25s;
+  animation: rise .7s both;
+}
+.card:hover { transform: translateY(-5px); border-color: var(--pink); }
+.avatar {
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  font-size: 42px;
+  border: 2px solid #ffffff50;
+  box-shadow: 0 0 25px #b38cff30;
+}
+.card h3 { margin: 5px 0; font-size: 18px; }
+.card p { color: var(--muted); font-size: 13px; line-height: 1.5; }
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #ffffff13;
+  color: #ffb7e7;
+}
+.alenka .avatar { background: linear-gradient(135deg,#ff716b,#ffb5d4); }
+.varya .avatar { background: linear-gradient(135deg,#63b7ff,#b9a0ff); }
+.masha .avatar { background: linear-gradient(135deg,#d1a0ff,#ffb1e8); }
+.snezhka .avatar { background: linear-gradient(135deg,#73dfff,#a9c8ff); }
+.info {
+  max-width: 900px;
+  margin: auto;
+  padding: 25px;
+  border-radius: 22px;
+  background: #ffffff0a;
+  border: 1px solid #ffffff20;
+}
+.info p { color: var(--muted); line-height: 1.8; }
+.tabs { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 18px; }
+.tab {
+  border: 1px solid #ffffff30;
+  background: #ffffff0b;
+  color: white;
+  border-radius: 99px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.tab.active { background: #dba6ff; color: #251039; }
+.tab-content { line-height: 1.8; }
+.tab-content h3 { color: #ffb7e7; }
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  border-top: 1px solid #ffffff18;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+#topButton {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  width: 43px;
+  height: 43px;
+  border: 0;
+  border-radius: 50%;
+  background: #dba6ff;
+  color: #210d39;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+}
+@keyframes twinkle { from { opacity: .3; transform: scale(.8) rotate(0); } to { opacity: 1; transform: scale(1.2) rotate(25deg); } }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@media (min-width: 650px) {
+  .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .hero { padding-top: 100px; }
+}
+@media (max-width: 380px) {
+  nav { gap: 8px; font-size: 11px; }
+  .logo { font-size: 14px; }
+  .card h3 { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="#home">✨ <span>Сказочный</span> патруль</a>
+  <nav>
+    <a href="#heroes">Героини</a>
+    <a href="#world">Мир</a>
+    <a href="#about">О сайте</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="eyebrow">✧ Добро пожаловать в волшебный мир ✧</div>
+    <h1>Сказочный<br>патруль</h1>
+    <p>Магия, дружба и невероятные приключения! Исследуй мир любимого мультсериала вместе с нами.</p>
+    <a class="btn" href="#heroes">Открыть волшебный мир ✨</a>
+  </section>
+
+  <section id="heroes">
+    <div class="section-title">
+      <h2>🌟 Наши героини</h2>
+      <p>Четыре подруги — четыре характера и свои способности.</p>
+    </div>
+    <div class="grid">
+      <article class="card alenka">
+        <div class="avatar">🔥</div>
+        <h3>Алёнка</h3>
+        <span class="tag">Огонь</span>
+        <p>Энергичная, эмоциональная и всегда готовая к приключениям.</p>
+      </article>
+      <article class="card varya">
+        <div class="avatar">🌪️</div>
+        <h3>Варя</h3>
+        <span class="tag">Воздух</span>
+        <p>Решительная и смелая, умеет брать ответственность на себя.</p>
+      </article>
+      <article class="card masha">
+        <div class="avatar">🌿</div>
+        <h3>Маша</h3>
+        <span class="tag">Земля</span>
+        <p>Добрая и рассудительная, ценит друзей и командную работу.</p>
+      </article>
+      <article class="card snezhka">
+        <div class="avatar">❄️</div>
+        <h3>Снежка</h3>
+        <span class="tag">Вода</span>
+        <p>Умная и наблюдательная, с собственным взглядом на мир.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="world">
+    <div class="section-title">
+      <h2>📚 Волшебная библиотека</h2>
+      <p>Выбери раздел, чтобы узнать больше.</p>
+    </div>
+    <div class="info">
+      <div class="tabs" role="group" aria-label="Разделы сайта">
+        <button class="tab active" data-tab="seasons">Сезоны</button>
+        <button class="tab" data-tab="magic">Магия</button>
+        <button class="tab" data-tab="fan">Фан-проект</button>
+      </div>
+      <div class="tab-content" id="tabContent" aria-live="polite">
+        <h3>Истории и приключения</h3>
+        <p>Вспоминай любимые моменты, обсуждай развитие героинь и открывай для себя новые истории мультсериала.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-title">
+      <h2>💜 О нашем сайте</h2>
+    </div>
+    <div class="info">
+      <p>Это фанатский проект для поклонников «Сказочного патруля». Здесь можно собирать интересные факты, обсуждать героев и делиться теориями.</p>
+      <p>В будущем здесь могут появиться новости, галерея, опросы и отдельная страница фанатского шестого сезона.</p>
+      <p><strong>А какой персонаж твой любимый?</strong> Подумай, кого добавим в следующий раздел!</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  ✨ Сделано фанатом для фанатов ✨<br>
+  Неофициальный фан-сайт. Не связан с правообладателями мультсериала.
+</footer>
+<button id="topButton" aria-label="Наверх" title="Наверх">↑</button>
+
+<script>
+const tabs = {
+  seasons: {
+    title: "Истории и приключения",
+    text: "Вспоминай любимые моменты, обсуждай развитие героинь и открывай для себя новые истории мультсериала."
+  },
+  magic: {
+    title: "Магия стихий ✨",
+    text: "Огонь, воздух, земля и вода — у каждой героини свой характер и свой способ справляться с трудностями. Какую магию ты хотел бы изучить?"
+  },
+  fan: {
+    title: "Твой фанатский проект 🎬",
+    text: "Здесь можно рассказывать о собственных идеях, персонажах и фанатском шестом сезоне. Добавим отдельную страницу с описанием серий после публикации первой серии."
+  }
+};
+
+document.querySelectorAll(".tab").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+    const item = tabs[button.dataset.tab];
+    document.getElementById("tabContent").innerHTML =
+      "<h3>" + item.title + "</h3><p>" + item.text + "</p>";
+  });
+});
+
+const topButton = document.getElementById("topButton");
+window.addEventListener("scroll", () => {
+  topButton.style.display = window.scrollY > 300 ? "block" : "none";
+});
+topButton.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+</script>
+</body>
+</html>
